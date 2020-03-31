@@ -17,6 +17,6 @@ class Multiplepages(scrapy.Spider):
             items['author']=author
             items['tags']=tag
             yield items
-        next_page=response.css('li.next a').xpath('@href').extract()
+        next_page = response.css('li.next a::attr(href)').get()
         if next_page is not None:
-            yield response.follow(next_page,callback=self.parse)
+            yield response.follow(next_page , callback=self.parse)
