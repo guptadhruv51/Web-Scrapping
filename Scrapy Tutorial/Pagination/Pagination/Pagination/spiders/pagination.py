@@ -19,9 +19,9 @@ class PageItem(scrapy.Spider):
             items['title']=title
             items['author']=author
             items['tags']=tags
-
             yield items
-    next_page='http://quotes.toscrape.com/page/'+str(PaginationItem.page_number)+'/'
-    if PaginationItem.page_number <11:
-        PaginationItem.page_number +=1
-        yield response.follow(next_page , callback=self.parse)
+
+        next_page='http://quotes.toscrape.com/page/'+str(PageItem.page_number)+'/'
+        if PageItem.page_number <11 :
+            PageItem.page_number +=1
+            yield response.follow(next_page , callback=self.parse)
